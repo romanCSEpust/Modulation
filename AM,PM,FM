@@ -1,0 +1,98 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Carrier wave parameters
+carrier_frequency = float(input('Enter Carrier Frequency: '))  # Frequency of the carrier signal in Hz
+amplitude = float(input('Enter Carrier Amplitude: '))  # Amplitude of the carrier signal
+
+# Modulating signal (message signal) parameters
+modulating_frequency = float(input('Enter Modulating Frequency: '))  # Frequency of the modulating signal in Hz
+modulating_amplitude = float(input('Enter Modulating Amplitude: '))  # Amplitude of the modulating signal
+
+# Time parameters
+sampling_frequency = float(input("Enter Sampling Frequency: "))  # Sampling frequency in Hz
+time = np.arange(0, 4, 1 / sampling_frequency)  # Time from 0 to 2 seconds
+
+# Carrier signal
+carrier_signal = amplitude * np.sin(2 * np.pi * carrier_frequency * time)
+
+# Modulating signal
+modulating_signal = modulating_amplitude * np.sin(2 * np.pi * modulating_frequency * time)
+
+# Amplitude Modulated signal
+am= (1 + modulating_signal) * carrier_signal
+fm=np.sin(2 * np.pi * (carrier_frequency + modulating_signal) * time)
+pm=np.sin(2 * np.pi * carrier_frequency * time + np.pi * modulating_signal)
+
+
+
+# Plotting the signals
+
+plt.subplot(3,3,1)
+plt.plot(time, carrier_signal)
+plt.title('Carrier Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.legend()
+
+plt.subplot(3,3,2)
+plt.plot(time, modulating_signal)
+plt.title('Modulating Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.legend()
+
+plt.subplot(3,3,3)
+plt.plot(time, am)
+plt.title('Amplitude Modulated Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.legend()
+
+plt.tight_layout()
+plt.subplot(3,3,4)
+plt.plot(time, carrier_signal)
+plt.title('Carrier Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.legend()
+
+plt.subplot(3,3,5)
+plt.plot(time, modulating_signal)
+plt.title('Modulating Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+plt.legend()
+
+
+
+plt.subplot(3, 3, 6)
+plt.plot(time, fm)
+plt.title('Frequency Modulated Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+plt.subplot(3,3,7)
+plt.plot(time, carrier_signal)
+plt.title('Carrier Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+plt.subplot(3,3,8)
+plt.plot(time, modulating_signal)
+plt.title('Modulating Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+
+plt.tight_layout()
+plt.subplot(3, 3, 9)
+plt.plot(time, pm)
+plt.title('Phase Modulated Signal')
+plt.xlabel('Time')
+plt.ylabel('Amplitude')
+
+plt.tight_layout()
+plt.show()
